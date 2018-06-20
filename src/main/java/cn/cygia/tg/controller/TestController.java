@@ -9,6 +9,6 @@ public class TestController {
 
     @RequestMapping(value = "/hello")
     public String test(){
-        return "hello";
+        return "水电费大幅度";
     }
 }
