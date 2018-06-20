@@ -1,9 +1,11 @@
 package cn.cygia.tg.controller;
 
+import cn.cygia.tg.entity.GoodEntity;
 import cn.cygia.tg.entity.OrderDetailEntity;
 import cn.cygia.tg.entity.OrderListEntity;
 import cn.cygia.tg.entity.UserGradeEntity;
 import cn.cygia.tg.resp.BaseResp;
+import cn.cygia.tg.service.GoodService;
 import cn.cygia.tg.service.OrderDetailService;
 import cn.cygia.tg.service.OrderListService;
 import cn.cygia.tg.service.UserGradeService;
@@ -28,6 +30,9 @@ public class GetMessageController {
 
     @Autowired
     UserGradeService userGradeService;
+
+    @Autowired
+    GoodService goodService;
 
     @RequestMapping(value ="/orderList")
     public String getOrderList(){
@@ -79,5 +84,22 @@ public class GetMessageController {
             baseResp.setMessage("登录失败，用户名或密码错误");
             return GsonUtil.getInstance().toJson(baseResp);
         }
+    }
+
+    @RequestMapping(value = "/good")
+    public String getGoodMessage(){
+        BaseResp<GoodEntity> baseResp = new BaseResp<GoodEntity>();
+        GoodEntity goodEntity = goodService.getGoodMessage("DM38256");
+        if(goodEntity!=null){
+            baseResp.setMessage("成功找到该商品");
+            baseResp.setCode(BaseResp.SUCCESS);
+            baseResp.setData(goodEntity);
+        }
+        else {
+            baseResp.setMessage("搜寻商品失败");
+            baseResp.setCode(BaseResp.SUCCESS);
+            baseResp.setData(null);
+        }
+        return GsonUtil.getInstance().toJson(baseResp);
     }
 }
