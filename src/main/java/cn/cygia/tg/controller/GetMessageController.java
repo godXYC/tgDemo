@@ -87,9 +87,9 @@ public class GetMessageController {
     }
 
     @RequestMapping(value = "/good")
-    public String getGoodMessage(){
+    public String getGoodMessage(@RequestParam(name ="ognNumber")String ognNumber){
         BaseResp<GoodEntity> baseResp = new BaseResp<GoodEntity>();
-        GoodEntity goodEntity = goodService.getGoodMessage("DM38256");
+        GoodEntity goodEntity = goodService.getGoodMessage(ognNumber);
         if(goodEntity!=null){
             baseResp.setMessage("成功找到该商品");
             baseResp.setCode(BaseResp.SUCCESS);

@@ -40,6 +40,9 @@ public class OrderDetailEntity {
     @Column(name = "orderId")
     private Integer orderId;
 
+    @Column(name = "ogn_number")
+    private String ognNumber;
+
     public Integer getId() {
         return id;
     }
@@ -126,5 +129,13 @@ public class OrderDetailEntity {
 
     public void setOrderId(Integer orderId) {
         this.orderId = orderId;
+    }
+
+    public String getOgnNumber() {
+        return ognNumber;
+    }
+
+    public void setOgnNumber(String ognNumber) {
+        this.ognNumber = ognNumber;
     }
 }
