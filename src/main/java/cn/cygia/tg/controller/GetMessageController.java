@@ -67,24 +67,7 @@ public class GetMessageController {
         return GsonUtil.getInstance().toJson(baseResp);
     }
 
-    @RequestMapping(value = "/login")
-    public String login(@RequestParam(name = "username")String userName,
-                        @RequestParam(name = "password")String userPassword){
 
-        BaseResp<String> baseResp = new BaseResp<String>();
-
-        if(userName.equals("admin")&&userPassword.equals("admin")){
-            baseResp.setCode(BaseResp.SUCCESS);
-            baseResp.setMessage("登录成功");
-            return GsonUtil.getInstance().toJson(baseResp);
-
-        }
-        else{
-            baseResp.setCode(BaseResp.FAIL);
-            baseResp.setMessage("登录失败，用户名或密码错误");
-            return GsonUtil.getInstance().toJson(baseResp);
-        }
-    }
 
     @RequestMapping(value = "/good")
     public String getGoodMessage(@RequestParam(name ="ognNumber")String ognNumber){

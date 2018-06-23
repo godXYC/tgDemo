@@ -32,4 +32,21 @@ public class UserOperationServiceImpl implements UserOperationService{
             return null;
         }
     }
+
+    @Override
+    public UserEntity login(String username, String password) {
+        if(username!=null&&password!=null){
+            UserEntity userEntity = userOperationRepository.findByNickNameAndPassword(username,password);
+            if(userEntity!=null){
+                return userEntity;
+            }
+            else{
+                return null;
+            }
+        }
+        else{
+            return null;
+        }
+
+    }
 }

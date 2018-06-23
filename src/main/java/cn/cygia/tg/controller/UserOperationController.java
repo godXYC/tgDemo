@@ -32,4 +32,26 @@ public class UserOperationController {
         return GsonUtil.getInstance().toJson(baseResp);
 
     }
+
+
+    @RequestMapping(value = "/login")
+    public String login(@RequestParam(name = "username")String userName,
+                        @RequestParam(name = "password")String userPassword){
+
+        BaseResp<UserEntity> baseResp = new BaseResp<UserEntity>();
+
+        UserEntity userEntity = userOperationService.login(userName,userPassword);
+        if(userEntity!=null){
+            baseResp.setCode(BaseResp.SUCCESS);
+            baseResp.setMessage("登录成功");
+            baseResp.setData(userEntity);
+            return GsonUtil.getInstance().toJson(baseResp);
+        }
+
+        else{
+            baseResp.setCode(BaseResp.FAIL);
+            baseResp.setMessage("登录失败，用户名或密码错误");
+            return GsonUtil.getInstance().toJson(baseResp);
+        }
+    }
 }
